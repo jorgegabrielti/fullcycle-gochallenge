@@ -1,5 +1,5 @@
 # **FullCycle 3.0 - Docker Go Lang Challenge**
-![img](./logo.png)
+![img](./img/logo.png)
 
 Table of contents
 ==========
@@ -31,12 +31,12 @@ A imagem de nosso projeto Go precisa ter menos de 2MB.
 - https://hub.docker.com/r/jorgegabriel/fullcycle/tags
 
 ### Imagem local
-![img](./jorgegabrielfullcycle.png)
+![img](./img/jorgegabrielfullcycle.png)
 
 
 ### Executando a imagem
 ```
 docker run jorgegabriel/fullcycle
 ```
-![img](./docker-run-jorgegabriel-fullcycle.png)
+![img](./img/docker-run-jorgegabriel-fullcycle.png)
 
