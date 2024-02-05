@@ -1,0 +1,54 @@
+---
+version: '3'
+
+services:
+  nginx:
+    build:
+      context: nginx
+      dockerfile: Dockerfile
+    container_name: nginx
+    networks:
+      - node-network
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    ports:
+      - "8080:8080"
+    depends_on:
+      - app
+
+  app:
+    build:
+      context: node
+      dockerfile: Dockerfile
+    container_name: app
+    entrypoint: dockerize -wait tcp://db:3306 -timeout 60s node index.js
+    networks:
+      - node-network
+    volumes:
+      - ./node:/usr/src/app
+      - /usr/src/app/node_modules
+    tty: true
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.3.0
+    command: --default-authentication-plugin=mysql_native_password
+    container_name: db
+    restart: always
+    tty: true
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+
+    environment:
+      MYSQL_ROOT_PASSWORD: pass@123
+      MYSQL_DATABASE: nodedb 
+    networks:
+     - node-network
+
+networks:
+  node-network:
+    driver: bridge
+...

@@ -1,4 +1,4 @@
-# **FullCycle 3.0 - Docker Go Lang Challenge**
+# **FullCycle 3.0 - Docker Node.js Challenge**
 ![img](./img/logo.png)
 
 Table of contents
@@ -13,30 +13,25 @@ Table of contents
 <!--te-->
 
 ## Desafio:
-Publicar uma imagem no docker hub. Quando executarmos:
+ A idéia principal é que quando um usuário acesse o nginx, o mesmo fará uma chamada em nossa aplicação node.js. Essa aplicação por sua vez adicionará um registro em nosso banco de dados mysql, cadastrando um nome na tabela people.
 
+O retorno da aplicação node.js para o nginx deverá ser:
 ```
-docker run <seu-user>/fullcycle
+<h1>Full Cycle Rocks!</h1>
 ```
-
-Temos que ter o seguinte resultado: 
 ```
-Full Cycle Rocks!!
+Lista de nomes cadastrada no banco de dados
 ```
 ### Requisito:
-A imagem de nosso projeto Go precisa ter menos de 2MB.
+Disponibilizar o acesso ao nginx na porta 8080.
 
-
-### Imagem no dockerhub
-- https://hub.docker.com/r/jorgegabriel/fullcycle/tags
-
-### Imagem local
-![img](./img/jorgegabrielfullcycle.png)
-
-
-### Executando a imagem
+### Executando o docker-compose
 ```
-docker run jorgegabriel/fullcycle
+docker-compose up -d 
 ```
-![img](./img/docker-run-jorgegabriel-fullcycle.png)
+![img](./img/)
 
+# O que preciso fazer:
+- Subir o mysql em Container e criar a base e tabela
+- Subir o nodejs em container e conectar ao banco de dados e inserir os dados na tabela.
+- Subir o nginx em container e conectá-lo como proxy reverso ao nodejs. O nginx dever responder na porta 8080
